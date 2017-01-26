@@ -12,9 +12,5 @@ declare var SystemJS;
 @Injectable()
 export class MyRootUIRouterConfig {
   /** You may inject dependencies into the constructor */
-  constructor(uiRouter: UIRouter) {
-    // Show the ui-router visualizer
-    let vis = window['ui-router-visualizer'];
-    vis.visualizer(uiRouter);
-  }
+  constructor(uiRouter: UIRouter) {}
 }

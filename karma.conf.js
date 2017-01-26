@@ -1,6 +1,6 @@
 module.exports = function(config) {
 
-  var appBase   = 'app/';      // transpiled app JS files
+  var appBase   = 'src/';      // transpiled app JS files
   var appAssets ='/base/app/'; // component assets fetched by Angular's compiler
 
   config.set({
@@ -32,9 +32,13 @@ module.exports = function(config) {
       // Zone.js dependencies
       // Note - do not include zone.js itself or long-stack-trace-zone.js` here as
       // they are included already in angular2-polyfills
-      'node_modules/zone.js/dist/jasmine-patch.js',
+      'node_modules/zone.js/dist/zone.js',
+      'node_modules/zone.js/dist/long-stack-trace-zone.js',
       'node_modules/zone.js/dist/async-test.js',
       'node_modules/zone.js/dist/fake-async-test.js',
+      'node_modules/zone.js/dist/sync-test.js',
+      'node_modules/zone.js/dist/proxy.js',
+      'node_modules/zone.js/dist/jasmine-patch.js',
 
       // RxJs
       'node_modules/rxjs/bundles/Rx.js',
@@ -63,7 +67,7 @@ module.exports = function(config) {
     // proxied base paths for loading assets
     proxies: {
       // required for component assets fetched by Angular's compiler
-      "/app/": appAssets
+      "/src/": appAssets
     },
 
     exclude: [],

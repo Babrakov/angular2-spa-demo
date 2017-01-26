@@ -8,11 +8,9 @@ import {Component} from '@angular/core';
 
 let template = `
 
-<h1>My First UI-Router Angular 2 App</h1>
+<h1>UI-Router Angular 2 App</h1>
 
-<a uiSref="app.foo" [uiOptions]="{ inherit: false }" uiSrefActive="active">Foo</a>
-<a uiSref="app.bar" [uiOptions]="{ inherit: false }" uiSrefActive="active">Bar</a>
-<a uiSref="app.baz" [uiOptions]="{ inherit: false }" uiSrefActive="active">Baz</a>
+<h5><a uiSref="app.products" [uiOptions]="{ inherit: false }" uiSrefActive="active">Products</a></h5>
 
 <ui-view></ui-view>
 
@@ -21,6 +19,8 @@ let template = `
 
 @Component({
   selector: 'my-app',
+  host: { 'class': 'container-fluid'} ,
+  styles: [` :host { display: block; } `],
   template: template
 })
 export class AppComponent { }

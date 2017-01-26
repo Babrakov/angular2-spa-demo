@@ -19,3 +19,5 @@ _temp
 *.ipr
 *.iml
 *.iws
+*.sublime-project
+*.sublime-workspace
