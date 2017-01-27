@@ -1,29 +1,32 @@
 import {Injectable, Inject} from "@angular/core";
 import {LocalStorageService} from 'ng2-webstorage';
-import {Product} from '../products/product.interface';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
+//import {Observable} from "rxjs/Rx";
+import {Product} from '../products/product.interface';
+import 'rxjs/Rx';
 
 @Injectable()
 export class ProductsLocalService {
-  private pList: Product[] = [];
+
   constructor(
   	private storage:LocalStorageService,
-  	private http:Http)
+  	private http:Http )
   {}
 
   private urlData = '/shared/productsData.json';
 
   firstLoad(): Promise<Product[]>{
+  	let pList: Product[] = [];
 	return this.http.get(this.urlData).map(
 	  (resp:Response) => {
         console.log('I AM IN');
         let list = resp.json().data;
         for(let index in list){
           let p = list[index];
-          this.pList.push(p);
+          pList.push(p);
         }
-      	this.saveAllProducts(this.pList);   
-        return this.pList;
+      	this.saveAllProducts(pList);   
+        return pList;
       }).toPromise()
   }  	
 
@@ -87,15 +90,15 @@ export class ProductsLocalService {
   }
 
   deleteProduct(id){
-  	this.pList = [];
+  	let pList: Product[]  = [];
   	let products = this.getAllProducts();
   	//products = products.filter(obj => { obj.id !== id });
   	for(let index in products){
           let p = products[index];
-          if (p.id !== id) this.pList.push(p);
+          if (p.id !== id) pList.push(p);
         }
 	//console.log('FILTER',this.pList);
-	this.saveAllProducts(this.pList);
+	this.saveAllProducts(pList);
   }
 
   defaultProduct(){
